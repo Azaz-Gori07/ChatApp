@@ -1,0 +1,32 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.auth-form button {
+  padding: 12px;
+  font-size: 15px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-alt {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.auth-alt a {
+  color: #4a90e2;
+  text-decoration: none;
+}

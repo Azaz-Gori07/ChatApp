@@ -1,0 +1,40 @@
+/* Remove all default margins & paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove list dots */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove default anchor styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove default button style */
+button {
+  border: none;
+  background: none;
+}
+
+/* Set smooth font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove textarea resize if unwanted */
+textarea {
+  resize: vertical;
+}
+
+/* Images responsive */
+img {
+  max-width: 100%;
+  display: block;
+}
