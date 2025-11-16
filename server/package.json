@@ -14,10 +14,12 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.19.2",
+    "idb": "^8.0.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.1",
     "nodemailer": "^6.10.1",
-    "socket.io": "^4.7.5"
+    "socket.io": "^4.7.5",
+    "workbox-window": "^7.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"

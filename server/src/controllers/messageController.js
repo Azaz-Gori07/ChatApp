@@ -34,3 +34,19 @@ export const sendMessage = async (req, res, next) => {
     next(err);
   }
 };
+
+export const markAsRead = async (req, res, next) => {
+  try {
+    const conv = await Conversation.findById(req.params.id);
+    if (!conv) return res.status(404).json({ message: "Conversation not found" });
+
+    // Future: user-wise unread handling, abhi basic reset
+    conv.unreadCount = 0;
+    await conv.save();
+
+    res.json({ message: "Marked as read" });
+  } catch (err) {
+    next(err);
+  }
+};
+
