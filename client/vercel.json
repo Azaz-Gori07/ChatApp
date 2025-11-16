@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://chat-app-server-one-omega.vercel.app/api/$1"
+        }
+    ]
+}
