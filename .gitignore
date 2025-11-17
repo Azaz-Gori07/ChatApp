@@ -2,6 +2,6 @@ client/.env
 server/.env
 .env
 
-server/ node_modules
-client/ node_modules
 node_modules
+client/node_modules
+server/node_modules
