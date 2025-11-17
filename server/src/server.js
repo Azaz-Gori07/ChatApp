@@ -6,14 +6,10 @@ import { connectDB } from "./config/db.js";
 import { ENV } from "./config/env.js";
 import { initSocket } from "./socket/socket.js";
 
-// ----------------------------
-// Create HTTP Server
-// ----------------------------
+
 const server = http.createServer(app);
 
-// ----------------------------
-// Setup Socket.IO
-// ----------------------------
+
 const io = new Server(server, {
   cors: {
     origin: ENV.CLIENT_URL,
@@ -21,12 +17,10 @@ const io = new Server(server, {
   },
 });
 
-// Initialize socket listeners
+app.options("*", cors());
+
 initSocket(io);
 
-// ----------------------------
-// Connect to MongoDB
-// ----------------------------
 connectDB();
 
 const PORT = ENV.PORT || process.env.PORT || 3000;
