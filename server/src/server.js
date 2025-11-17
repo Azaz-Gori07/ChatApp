@@ -29,9 +29,9 @@ initSocket(io);
 // ----------------------------
 connectDB();
 
-// ----------------------------
-// Start Server
-// ----------------------------
-server.listen(ENV.PORT, () => {
-  console.log(`🚀 Server running on port ${ENV.PORT}`);
+const PORT = ENV.PORT || process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
+
