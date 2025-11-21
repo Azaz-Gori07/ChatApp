@@ -11,8 +11,6 @@ build/
 .vscode/
 .DS_Store
 npm-debug.log
-yarn-error.log
-coverage/
 .idea/
 *.log
 *.tsbuildinfo
