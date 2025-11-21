@@ -1,0 +1,346 @@
+.settingsOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.settingsPanel {
+  background: var(--bg-card);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  animation: slideUp 0.3s ease-out;
+}
+
+.settingsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.settingsHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.settingsContent {
+  padding: 0 24px 24px;
+}
+
+.settingsSection {
+  margin-bottom: 32px;
+}
+
+.settingsSection h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.settingItem:last-child {
+  border-bottom: none;
+}
+
+.settingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.settingLabel {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.settingDescription {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-medium);
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--text-secondary);
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+input:checked + .slider:before {
+  background: var(--bg-primary);
+  transform: translateX(24px);
+}
+
+/* Select Dropdown */
+.select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Danger Buttons */
+.dangerButton {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.dangerButton:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: var(--error);
+}
+
+.dangerButton:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .settingsPanel {
+    width: 95%;
+    margin: 10px;
+    border-radius: 16px;
+  }
+  
+  .settingsHeader {
+    padding: 20px;
+  }
+  
+  .settingsContent {
+    padding: 0 20px 20px;
+  }
+  
+  .settingItem {
+    padding: 14px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .settingsHeader h2 {
+    font-size: 1.3rem;
+  }
+  
+  .settingsSection h3 {
+    font-size: 1rem;
+  }
+  
+  .settingLabel {
+    font-size: 0.9rem;
+  }
+  
+  .settingDescription {
+    font-size: 0.8rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Add to existing CSS */
+
+.testButton {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.testButton:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+}
+
+.actionButton {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.actionButton:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+}
+
+/* Enhanced select styles */
+.select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 120px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Improved toggle alignment */
+.settingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+  gap: 16px;
+}
+
+.settingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+/* Responsive improvements */
+@media (max-width: 480px) {
+  .settingItem {
+    padding: 12px 0;
+    gap: 12px;
+  }
+  
+  .select {
+    min-width: 100px;
+    font-size: 0.85rem;
+  }
+}

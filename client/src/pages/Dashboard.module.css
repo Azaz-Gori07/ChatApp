@@ -1,0 +1,487 @@
+.dashboard {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 10;
+  min-height: 70px;
+}
+
+.headerLeft,
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.headerRight {
+  justify-content: flex-end;
+}
+
+.headerCenter {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.welcome {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Button Styles */
+.sidebarToggle,
+.settingsButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.sidebarToggle:hover,
+.settingsButton:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.profileButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.profileButton:hover {
+  background: var(--bg-hover);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%);
+  color: var(--text-primary);
+  flex-shrink: 0;
+  border: 1px solid var(--border-medium);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  font-weight: 500;
+}
+
+.logoutButton {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.logoutButton:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: var(--error);
+}
+
+/* Main Content */
+.mainContent {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sidebar Base Styles */
+.sidebarLeft,
+.sidebarRight {
+  width: 350px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-light);
+}
+
+.sidebarRight {
+  border-right: none;
+  border-left: 1px solid var(--border-light);
+}
+
+.chatArea {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+/* Sidebar Overlay */
+.sidebarOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 15;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .sidebarLeft,
+  .sidebarRight {
+    position: relative;
+    transform: none !important;
+  }
+  
+  /* Hide sidebars when not open on desktop */
+  .sidebarLeft:not(.open) {
+    display: none;
+    width: 0;
+  }
+  
+  .sidebarRight:not(.open) {
+    display: none;
+    width: 0;
+  }
+  
+  .sidebarOverlay {
+    display: none;
+  }
+  
+  /* Expand chat area when sidebars are closed */
+  .sidebarLeft:not(.open) + .chatArea {
+    margin-left: 0;
+  }
+  
+  .chatArea:has(~ .sidebarRight:not(.open)) {
+    margin-right: 0;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 16px;
+    min-height: 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  
+  .headerCenter {
+    display: none;
+  }
+  
+  .headerLeft,
+  .headerRight {
+    flex: none;
+    gap: 8px;
+  }
+  
+  .headerLeft {
+    justify-self: start;
+  }
+  
+  .headerRight {
+    justify-self: end;
+  }
+  
+  .userName {
+    display: none;
+  }
+  
+  .profileButton {
+    padding: 6px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+  }
+  
+  .sidebarToggle,
+  .settingsButton {
+    padding: 8px;
+    min-width: 40px;
+    min-height: 40px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+  }
+  
+  .logoutButton {
+    display: none;
+  }
+  
+  /* Mobile Sidebar Animations */
+  .sidebarLeft {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+    max-width: 400px;
+    z-index: 20;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .sidebarLeft.open {
+    transform: translateX(0);
+  }
+  
+  .sidebarRight {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 85%;
+    max-width: 400px;
+    z-index: 20;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .sidebarRight.open {
+    transform: translateX(0);
+  }
+  
+  /* Hide sidebars by default on mobile when not open */
+  .sidebarLeft:not(.open),
+  .sidebarRight:not(.open) {
+    display: none;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sidebarLeft,
+  .sidebarRight {
+    width: 300px;
+  }
+  
+  .welcome {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .sidebarLeft,
+  .sidebarRight {
+    width: 320px;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .header {
+    padding: 8px 12px;
+    min-height: 56px;
+    gap: 8px;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+    max-width: 100px;
+  }
+  
+  .sidebarLeft,
+  .sidebarRight {
+    max-width: 100%;
+  }
+  
+  .sidebarToggle,
+  .settingsButton,
+  .profileButton {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 1.1rem;
+    padding: 6px;
+  }
+  
+  .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Extra Small Mobile Styles */
+@media (max-width: 360px) {
+  .header {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+  
+  .logo {
+    font-size: 1.1rem;
+    max-width: 80px;
+  }
+  
+  .sidebarToggle,
+  .settingsButton,
+  .profileButton {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    font-size: 1rem;
+    padding: 5px;
+  }
+  
+  .avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+  .sidebarLeft,
+  .sidebarRight {
+    width: 400px;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .header {
+    border-bottom-width: 0.5px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .sidebarToggle:hover,
+  .settingsButton:hover,
+  .profileButton:hover,
+  .logoutButton:hover {
+    background: none;
+    transform: none;
+  }
+  
+  .sidebarToggle:active,
+  .settingsButton:active,
+  .profileButton:active,
+  .logoutButton:active {
+    background: var(--bg-hover);
+    transform: scale(0.95);
+  }
+}
+
+/* Focus States for Accessibility */
+.sidebarToggle:focus-visible,
+.settingsButton:focus-visible,
+.profileButton:focus-visible,
+.logoutButton:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .sidebarLeft,
+  .sidebarRight,
+  .sidebarToggle,
+  .settingsButton,
+  .profileButton,
+  .logoutButton {
+    transition: none;
+  }
+  
+  .sidebarOverlay {
+    animation: none;
+  }
+}
